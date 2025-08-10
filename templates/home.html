@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block title %}Home - LeetCode Reviewer{% endblock%}
+
+{% block content %}
+
+<h1>Welcome to LeetCode Reviewer!</h1>
+<p>Track your progress and review problems with spaced repititon.</p>
+
+<div class="stats">
+    <h2>Your Stats</h2>
+    <p>Problems solved: <strong>{{ problems_count }}</strong></p>
+    <p>Due for review: <strong>{{ review_count }}</strong></p>
+</div>
+
+{% endblock %}
