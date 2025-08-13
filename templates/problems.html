@@ -2,7 +2,20 @@
 
 {% block content %}
 
-<h1>Your Problems</h1>
-<p>Here's where we'll list all of your saved problems.</p>
+<h1>Your Problems ({{ problems|length }})</h1>
 
+{% if problems %}
+{% for problem in problems %}
+<div class="problem-card">
+    <h3>{{ problem.number }}: {{ problem.title }}</h3>
+    <p><strong>Difficulty:</strong> {{ problem.difficulty }}/5</p>
+    <p><strong>Tags:</strong> {{ problem.tags }}</p>
+    <p><strong>Times seen:</strong> {{ problem.times_seen }}</p>
+    <a href="/delete_problem/{{ problem.id }}" onclick="return confirm('Are you sure?')">Delete</a>
+
+</div>
+{% endfor %}
+{% else %}
+<p>No problems added yet! <a href="/add-test-data">Add some test data</a></p>
+{% endif %}
 {% endblock %}

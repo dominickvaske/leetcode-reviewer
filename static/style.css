@@ -29,3 +29,26 @@ nav a:hover {
   border-radius: 5px;
   margin-top: 20px;
 }
+
+.problem-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.problem-card h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.problem-card a {
+  color: #dc3545;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+
+.problem-card a:hover {
+  text-decoration: underline;
+}
