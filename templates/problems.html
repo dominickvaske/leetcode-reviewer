@@ -3,7 +3,7 @@
 {% block content %}
 
 <h1>Your Problems ({{ problems|length }})</h1>
-
+<a href="/add_problem" class="btn">Add New Problem</a>
 {% if problems %}
 {% for problem in problems %}
 <div class="problem-card">
@@ -16,6 +16,6 @@
 </div>
 {% endfor %}
 {% else %}
-<p>No problems added yet! <a href="/add-test-data">Add some test data</a></p>
+<p>No problems added yet!</p>
 {% endif %}
 {% endblock %}

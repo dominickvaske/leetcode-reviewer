@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
@@ -46,6 +46,7 @@ def problems():
     all_problems = Problem.query.all()
     return render_template('problems.html', problems=all_problems)
 
+#adding a test problem to the database
 @app.route('/add-test-data')
 def add_test_data():
     #check if it already exists
@@ -67,6 +68,7 @@ def add_test_data():
     
     return "Test data added! <a href='/'>Go home</a>"
 
+#route to delete a problem from the database
 @app.route('/delete_problem/<int:problem_id>')
 def delete_problem(problem_id):
     problem_to_delete = Problem.query.filter_by(id=problem_id).first()
@@ -76,6 +78,38 @@ def delete_problem(problem_id):
         return "Problem deleted! <a href='/problems'>Back to problems</a>"
     else:
         return "Problem does not exist!"
+
+#Route for showing the add_problem template
+@app.route('/add_problem', methods=['GET'])
+def show_add_problem():
+    return render_template('add_problem.html')
+
+#this route will process the form submission
+@app.route('/add_problem', methods=['POST'])
+def add_problem(): 
+    #get data from form to create problem
+    number = request.form['number']
+    title = request.form['title']
+    description = request.form['description']
+    difficulty = int(request.form['difficulty'])
+    tags = request.form['tags']
+
+    new_problem = Problem (
+        number = number,
+        title = title,
+        description = description,
+        difficulty = difficulty,
+        tags = tags,
+        times_seen = 1 #first time seeing problem
+    )
+
+    #save new problem to database
+    db.session.add(new_problem)
+    db.session.commit()
+
+    #return to problems list
+    return redirect(url_for('problems'))
+
 
 #now create the database tables
 with app.app_context():

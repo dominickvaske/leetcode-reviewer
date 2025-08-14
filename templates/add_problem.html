@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Add New Problem</h1>
+
+<form method="POST" action="/add_problem">
+    <div>
+        <label for="number">Problem Number:</label>
+        <input type="text" id="number" name="number" required>
+    </div>
+
+    <div>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" required>
+    </div>
+
+    <div>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4"></textarea>
+    </div>
+
+    <div>
+        <label for="difficulty">How well did you understand it? (1-5):</label>
+        <select id="difficulty" name="difficulty" required>
+            <option value="1">1 - No understanding</option>
+            <option value="2">2 - Partial understanding</option>
+            <option value="3">3 - Understood with help</option>
+            <option value="4">4 - Understood well</option>
+            <option value="5">5 - Completely understood</option>
+        </select>
+    </div>
+
+    <div>
+        <label for="tags">Tags (comma-separated):</label>
+        <input type="text" id="tags" name="tags" placeholder="ex. array, hash table, two pointers">
+    </div>
+
+    <button type="submit">Add Problem</button>
+    <a href="/problems">Cancel</a>
+</form>
+
+{% endblock %}
